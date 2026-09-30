@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Propfastinvest Group Ltd | Macro-Desarrollo Insular & Continental Panamá</title>
+    <style>
+        :root {
+            --primary: #0f172a;
+            --secondary: #1e293b;
+            --accent: #d97706;
+            --accent-hover: #b45309;
+            --light: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #334155;
+            --border: #e2e8f0;
+            --success: #16a34a;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f1f5f9;
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        /* Control de Idioma con CSS */
+        body.lang-en [data-lang="es"] { display: none !important; }
+        body.lang-es [data-lang="en"] { display: none !important; }
+        body.lang-en p [data-lang="en"], body.lang-en li [data-lang="en"] { display: inline !important; }
+        body.lang-es p [data-lang="es"], body.lang-es li [data-lang="es"] { display: inline !important; }
+
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 4px solid var(--accent);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .header-logos {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .logo-box {
+            background: #ffffff;
+            padding: 6px 12px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+            height: 44px;
+        }
+
+        .logo-box img {
+            max-height: 36px;
+            max-width: 120px;
+            object-fit: contain;
+        }
+
+        .header-divider {
+            color: var(--accent);
+            font-size: 1.4rem;
+            font-weight: 300;
+        }
+
+        .header-title-container h1 {
+            margin: 0;
+            font-size: 1.3rem;
+            letter-spacing: 0.5px;
+        }
+
+        .header-title-container p {
+            margin: 2px 0 0 0;
+            color: #94a3b8;
+            font-size: 0.8rem;
+        }
+
+        .header-controls {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: 1px solid white;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.85rem;
+            transition: 0.3s;
+        }
+        .lang-btn:hover { background: white; color: var(--primary); }
+
+        .badge {
+            background-color: var(--accent);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .hero-card {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 35px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .hero-card h2 {
+            margin-top: 0;
+            color: var(--accent);
+            font-size: 1.8rem;
+        }
+
+        .project-scope {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .scope-item {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15);
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            color: var(--text-main);
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .tab-btn:hover, .tab-btn.active {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+
+        .tab-content {
+            display: none;
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+            border: 1px solid var(--border);
+            margin-bottom: 20px;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        h3 {
+            color: var(--primary);
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 8px;
+            margin-top: 0;
+        }
+        
+        h4 {
+            color: var(--secondary);
+            margin-top: 25px;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            margin-bottom: 20px;
+            display: block;
+            overflow-x: auto;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 12px 15px;
+            border-bottom: 1px solid var(--border);
+            min-width: 150px;
+        }
+
+        th {
+            background-color: #f1f5f9;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        tr:hover {
+            background-color: #f8fafc;
+        }
+
+        .sub-tag {
+            background: #e2e8f0;
+            color: #0f172a;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .alert-box {
+            background-color: #fffbeb;
+            border: 1px solid #fef3c7;
+            border-left: 5px solid var(--accent);
+            padding: 15px 20px;
+            border-radius: 6px;
+            margin-top: 20px;
+            color: #92400e;
+        }
+
+        .checklist {
+            list-style: none;
+            padding: 0;
+        }
+
+        .checklist li {
+            padding: 12px 15px;
+            margin-bottom: 8px;
+            background: #f8fafc;
+            border-left: 4px solid var(--accent);
+            border-radius: 0 6px 6px 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            background-color: var(--primary);
+            color: white;
+            font-size: 0.85rem;
+            margin-top: 40px;
+        }
+        footer a { color: var(--accent); text-decoration: none; font-weight: bold; }
+        
+        .print-btn {
+            background: var(--secondary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        .print-btn:hover { background: var(--primary); }
+
+    </style>
+</head>
+<body class="lang-es">
+
+    <header>
+        <div class="header-logos">
+            <div class="logo-box" title="Lead Developer / Chef de la Operación">
+                <img src="images/logo.png" alt="Propfastinvest Group Ltd" onerror="this.style.display='none'; this.parentElement.innerHTML='<strong style=\'color:#0f172a;font-size:11px;\'>PROPFASTINVEST</strong>';">
+            </div>
+            <span class="header-divider">+</span>
+            <div class="logo-box" title="Project Controller / PMO">
+                <img src="images/capitol.png" alt="Grupo Capitol" onerror="this.style.display='none'; this.parentElement.innerHTML='<strong style=\'color:#0f172a;font-size:11px;\'>GRUPO CAPITOL</strong>';">
+            </div>
+            <span class="header-divider">➔</span>
+            <div class="logo-box" title="Ingeniería, Arquitectura e Infraestructura (Panamá)">
+                <img src="images/activa.png" alt="Activa Constructora" onerror="this.style.display='none'; this.parentElement.innerHTML='<strong style=\'color:#0f172a;font-size:11px;\'>ACTIVA CONSTRUCTORA</strong>';">
+            </div>
+
+            <div class="header-title-container" style="margin-left: 10px;">
+                <h1>Propfastinvest Group Ltd</h1>
+                <p><span data-lang="es">Pliego de Certificaciones & Permisología | Panamá 2026</span><span data-lang="en">Certifications & Permitting Dossier | Panama 2026</span></p>
+            </div>
+        </div>
+
+        <div class="header-controls">
+            <button class="lang-btn" onclick="toggleLanguage()">
+                <span data-lang="es">🇬🇧 EN</span>
+                <span data-lang="en">🇪🇸 ES</span>
+            </button>
+            <span class="badge"><span data-lang="es">Interés Nacional</span><span data-lang="en">National Interest</span></span>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <button class="print-btn" onclick="window.print()">
+            <span data-lang="es">📄 Imprimir / Guardar PDF</span>
+            <span data-lang="en">📄 Print / Save PDF</span>
+        </button>
+
+        <div class="hero-card">
+            <h2><span data-lang="es">Macro-Proyecto Inmobiliario Insular & Continental</span><span data-lang="en">Island & Continental Macro-Real Estate Project</span></h2>
+            <p>
+                <span data-lang="es">Desarrollo estratégico liderado por <strong>Propfastinvest Group Ltd</strong> con financiación de EE.UU., declarado de <strong>Interés Nacional</strong>. Incluye Eco-Resort, Villas Overwater sobre el mar y Casino en Isla, más Pueblo "Villa Olímpica", Hospital y Casino Continental construidos integralmente en <strong>CLT Europeo</strong>. <strong>Activa Constructora</strong> asume la ingeniería, cimentaciones, marina, potabilizadora y permisología completa ante el Estado Panameño.</span>
+                <span data-lang="en">Strategic development led by <strong>Propfastinvest Group Ltd</strong> with U.S. funding, declared of <strong>National Interest</strong>. Includes Eco-Resort, Overwater Villas and Island Casino, plus Continental "Olympic Village", Hospital and Casino built entirely in <strong>European CLT</strong>. <strong>Activa Constructora</strong> handles engineering, foundations, marina, desalination plant and complete permitting before the Panamanian State.</span>
+            </p>
+            
+            <div class="project-scope">
+                <div class="scope-item">🏝️ <span data-lang="es">Villas & Casino Isla</span><span data-lang="en">Villas & Island Casino</span></div>
+                <div class="scope-item">🏡 <span data-lang="es">Pueblo CLT</span><span data-lang="en">CLT Village</span></div>
+                <div class="scope-item">🏥 <span data-lang="es">Hospital CLT</span><span data-lang="en">CLT Hospital</span></div>
+                <div class="scope-item">⛵ <span data-lang="es">Marina & Costa (ZMT)</span><span data-lang="en">Marina & Coast (CZ)</span></div>
+                <div class="scope-item">🛡️ <span data-lang="es">Avales & Garantías</span><span data-lang="en">Endorsements & Guarantees</span></div>
+            </div>
+        </div>
+
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab('tab-adquisicion')">
+                <span data-lang="es">0. Compra de la Isla (DD)</span><span data-lang="en">0. Island Purchase (DD)</span>
+            </button>
+            <button class="tab-btn" onclick="switchTab('tab-gobernanza')">
+                <span data-lang="es">1. Gobernanza & CLT</span><span data-lang="en">1. Governance & CLT</span>
+            </button>
+            <button class="tab-btn" onclick="switchTab('tab-mesainicio')">
+                <span data-lang="es">2. Certificados INICIALES</span><span data-lang="en">2. INITIAL Certificates</span>
+            </button>
+            <button class="tab-btn" onclick="switchTab('tab-permisossector')">
+                <span data-lang="es">3. Permisología Sectorial</span><span data-lang="en">3. Sectoral Permits</span>
+            </button>
+            <button class="tab-btn" onclick="switchTab('tab-avales')">
+                <span data-lang="es">4. Fianzas & Garantías</span><span data-lang="en">4. Bonds & Guarantees</span>
+            </button>
+            <button class="tab-btn" onclick="switchTab('tab-ddtecnica')">
+                <span data-lang="es">5. Cumplimiento & DD Técnica</span><span data-lang="en">5. Compliance & Tech DD</span>
+            </button>
+        </div>
+
+        <!-- TAB 0: ADQUISICIÓN Y DD REGISTRAL DE LA ISLA -->
+        <div id="tab-adquisicion" class="tab-content active">
+            <h3><span data-lang="es">0. Adquisición del Activo & Due Diligence Registral (La Isla)</span><span data-lang="en">0. Asset Acquisition & Registry Due Diligence (The Island)</span></h3>
+            <p>
+                <span data-lang="es">Paso previo (Antítesis). Requisitos exiguos al vendedor y a Activa Constructora para garantizar el 100% de fiabilidad y certeza de que la titularidad de la isla pasará a nombre de Propfastinvest Group Ltd sin gravámenes, litigios ni restricciones ocultas:</span>
+                <span data-lang="en">Preliminary step. Requirements demanded from the seller and Activa Constructora to guarantee 100% reliability and certainty that the island's title will transfer to Propfastinvest Group Ltd free of liens, litigation, or hidden restrictions:</span>
+            </p>
+
+            <h4><span data-lang="es">0.1 Verificación Registral y Legal del Título</span><span data-lang="en">0.1 Title Registry & Legal Verification</span></h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th><span data-lang="es">Área</span><span data-lang="en">Area</span></th>
+                        <th><span data-lang="es">Certificado Exigido</span><span data-lang="en">Required Certificate</span></th>
+                        <th><span data-lang="es">Institución (Panamá)</span><span data-lang="en">Institution (Panama)</span></th>
+                        <th><span data-lang="es">Propósito de Certeza</span><span data-lang="en">Certainty Purpose</span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="sub-tag">Propiedad</span></td>
+                        <td><span data-lang="es"><strong>Certificación de Dominio Pleno y Libre de Gravámenes</strong></span><span data-lang="en"><strong>Certificate of Full Title & Free of Liens</strong></span></td>
+                        <td>Registro Público de Panamá (RPI)</td>
+                        <td><span data-lang="es">Auditoría de la "Ficha" y "Tomos" para comprobar que el vendedor es el dueño único y absoluto, sin embargos, hipotecas o anotaciones judiciales.</span><span data-lang="en">Audit of the Property Record to verify the seller is the sole and absolute owner, free of liens, mortgages, or judicial annotations.</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="sub-tag">Linderos</span></td>
+                        <td><span data-lang="es"><strong>Levantamiento Topográfico y Deslinde Aprobado</strong></span><span data-lang="en"><strong>Topographic Survey & Approved Boundary Marking</strong></span></td>
+                        <td>ANATI / Topógrafo Autorizado</td>
+                        <td><span data-lang="es">Verificación física y catastral de la poligonal de la isla. Cero invasión a propiedades colindantes y exactitud en los metros cuadrados a comprar.</span><span data-lang="en">Physical and cadastral verification of the island polygon. Zero encroachment on neighboring properties and exact square meter accuracy.</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="sub-tag">Fiscal</span></td>
+                        <td><span data-lang="es"><strong>Paz y Salvo Municipal y de Impuesto Predial</strong></span><span data-lang="en"><strong>Municipal & Property Tax Clearance</strong></span></td>
+                        <td>Municipio Local / MEF</td>
+                        <td><span data-lang="es">Garantizar que el vendedor ha pagado todos los impuestos prediales acumulados; de lo contrario, el Estado panameño tendría derecho preferente sobre el activo.</span><span data-lang="en">Ensure the seller has paid all accumulated property taxes; otherwise, the Panamanian State would have preferential rights over the asset.</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4><span data-lang="es">0.2 Restricciones Geográficas y Ambientales (Dealbreakers)</span><span data-lang="en">0.2 Geographic & Environmental Restrictions (Dealbreakers)</span></h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th><span data-lang="es">Área</span><span data-lang="en">Area</span></th>
+                        <th><span data-lang="es">Certificado Exigido</span><span data-lang="en">Required Certificate</span></th>
+                        <th><span data-lang="es">Institución (Panamá)</span><span data-lang="en">Institution (Panama)</span></th>
+                        <th><span data-lang="es">Propósito de Certeza</span><span data-lang="en">Certainty Purpose</span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="sub-tag">Ambiental</span></td>
+                        <td><span data-lang="es"><strong>Certificado de No Infracción de Áreas Protegidas</strong></span><span data-lang="en"><strong>Certificate of Non-Encroachment in Protected Areas</strong></span></td>
+                        <td>MiAmbiente / ANATI</td>
+                        <td><span data-lang="es">Confirmación legal de que la isla NO está dentro de un Parque Nacional, Reserva Forestal, Humedal (Ramsar) o Concesión Indígena (Comarca). Si lo está, la venta sería nula.</span><span data-lang="en">Legal confirmation that the island is NOT within a National Park, Forest Reserve, Wetland (Ramsar), or Indigenous Concession (Comarca). If it is, the sale is void.</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="sub-tag">Marítima</span></td>
+                        <td><span data-lang="es"><strong>Resolución de Pre-Derecho de Vía y Zona Marítimo Terrestre</strong></span><span data-lang="en"><strong>Pre-Right of Way & Maritime Terrestrial Zone Resolution</strong></span></td>
+                        <td>ARCO / AMP</td>
+                        <td><span data-lang="es">Determinar cuántos metros de la isla son de "dominio público" (playa) frente a la zona privada adquirible, para estructurar la concesión del 22m más adelante.</span><span data-lang="en">Determine how many meters of the island are "public domain" (beach) versus the private acquireable zone, to structure the 22m concession later.</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4><span data-lang="es">0.3 Mecánica Financiera para la Transferencia Segura</span><span data-lang="en">0.3 Financial Mechanics for Safe Transfer</span></h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th><span data-lang="es">Mecanismo Legal</span><span data-lang="en">Legal Mechanism</span></th>
+                        <th><span data-lang="es">Institución / Actor</span><span data-lang="en">Institution / Actor</span></th>
+                        <th><span data-lang="es">Propósito de Certeza</span><span data-lang="en">Certainty Purpose</span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span data-lang="es"><strong>Contrato de Fideicomiso de Garantía (Escrow)</strong></span><span data-lang="en"><strong>Guarantee Escrow Trust Contract</strong></span></td>
+                        <td>Banco Panameño / Fiduciaria</td>
+                        <td><span data-lang="es">Los fondos de compra del inversor no van al vendedor. Se mantienen en una cuenta neutra. Solo se libera el pago cuando el nuevo título a nombre de Propfastinvest está inscrito en el Registro Público.</span><span data-lang="en">Investor purchase funds do not go to the seller. They are held in a neutral account. Payment is only released when the new title in Propfastinvest's name is registered in the Public Registry.</span></td>
+                    </tr>
+                    <tr>
+                        <td><span data-lang="es"><strong>Póliza de Título de Propiedad (Title Insurance)</strong></span><span data-lang="en"><strong>Title Insurance Policy</strong></span></td>
+                        <td>Aseguradora Internacional (SSRP)</td>
+                        <td><span data-lang="es">Indemnización financiera por defectos ocultos en el título, fraude del vendedor o evicción histórica. Asegura el capital total invertido en el activo.</span><span data-lang="en">Financial indemnity for hidden title defects, seller fraud, or historical eviction. Secures the total capital invested in the asset.</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="alert-box">
+                <strong><span data-lang="es">Regla de Oro de la Transacción:</span><span data-lang="en">Golden Rule of Transaction:</span></strong> 
+                <span data-lang="es">Cero desembolso directo al vendedor. Grupo Capitol exigirá que el 100% del capital de compra pase por un Fideicomiso (Escrow) regulado por la Superintendencia del Mercado de Valores de Panamá, liberando fondos exclusivamente contra entrega del "Certificado de Inscripción Registral" a nombre de Propfastinvest Group Ltd.</span>
+                <span data-lang="en">Zero direct disbursement to the seller. Grupo Capitol will require 100% of the purchase capital to pass through an Escrow Trust regulated by the Superintendence of the Securities Market of Panama, releasing funds exclusively against delivery of the "Registry Registration Certificate" in the name of Propfastinvest Group Ltd.</span>
+            </div>
+        </div>
+
+        <!-- TAB 1: GOBERNANZA -->
+        <div id="tab-gobernanza" class="tab-content">
+            <h3><span data-lang="es">1. Reparto Estratégico de Responsabilidades</span><span data-lang="en">1. Strategic Division of Responsibilities</span></h3>
+            <p>
+                <span data-lang="es">Estructuración funcional entre el inversor de EE.UU., Propfastinvest, la fiscalización de Grupo Capitol, el fabricante de CLT europeo y la constructora panameña:</span>
+                <span data-lang="en">Functional structuring between the U.S. investor, Propfastinvest, Grupo Capitol's supervision, the European CLT manufacturer, and the Panamanian construction company:</span>
+            </p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th><span data-lang="es">Rol / Participante</span><span data-lang="en">Role / Participant</span></th>
+                        <th><span data-lang="es">Origen</span><span data-lang="en">Origin</span></th>
+                        <th><span data-lang="es">Alcance Específico</span><span data-lang="en">Specific Scope</span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Inversor Institucional</strong></td>
+                        <td><span data-lang="es">EE.UU.</span><span data-lang="en">USA</span></td>
+                        <td><span data-lang="es">Financiación global del Macro-Proyecto.</span><span data-lang="en">Global financing of the Macro-Project.</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Propfastinvest Group Ltd</strong></td>
+                        <td><span data-lang="es">Reino Unido</span><span data-lang="en">UK</span></td>
+                        <td><span data-lang="es"><strong>Promotor Originador.</strong> Concepción, Interés Nacional y prescripción de proveedores.</span><span data-lang="en"><strong>Originating Developer.</strong> Conception, National Interest and supplier prescription.</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Grupo Capitol</strong></td>
+                        <td><span data-lang="es">España</span><span data-lang="en">Spain</span></td>
+                        <td><span data-lang="es"><strong>Project Controller & PMO.</strong> Control de costes, auditoría CLT y validación de desembolsos.</span><span data-lang="en"><strong>Project Controller & PMO.</strong> Cost control, CLT audit and disbursement validation.</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Fabricante Europeo CLT</strong></td>
+                        <td><span data-lang="es">Europa</span><span data-lang="en">Europe</span></td>
+                        <td><span data-lang="es"><strong>Suministro & Montaje.</strong> Ensamblaje directo de Villas, Hospital y Pueblo Olímpico.</span><span data-lang="en"><strong>Supply & Assembly.</strong> Direct assembly of Villas, Hospital and Olympic Village.</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Activa Constructora S.A.</strong></td>
+                        <td><span data-lang="es">Panamá</span><span data-lang="en">Panama</span></td>
+                        <td><span data-lang="es"><strong>Ingeniería e Infraestructura.</strong> Cimentaciones, pilotaje marino, Marina, Pista, Desalinizadora y gestión de permisología.</span><span data-lang="en"><strong>Engineering & Infrastructure.</strong> Foundations, marine piloting, Marina, Runway, Desalination and permit management.</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- TAB 2: CERTIFICADOS INICIALES -->
+        <div id="tab-mesainicio" class="tab-content">
+            <h3><span data-lang="es">2. Certificados Exigibles a Activa ANTES de Firmar</span><span data-lang="en">2. Certificates Required from Activa BEFORE Signing</span></h3>
+            <p>
+                <span data-lang="es">Documentos para demostrar capacidad técnica y jurídica en Panamá:</span>
+                <span data-lang="en">Documents to prove technical and legal capacity in Panama:</span>
+            </p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th><span data-lang="es">Área</span><span data-lang="en">Area</span></th>
+                        <th><span data-lang="es">Certificado Exigido</span><span data-lang="en">Required Certificate</span></th>
+                        <th><span data-lang="es">Institución Emisora (Panamá)</span><span data-lang="en">Issuing Institution (Panama)</span></th>
+                        <th><span data-lang="es">Propósito</span><span data-lang="en">Purpose</span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="sub-tag">Ingeniería</span></td>
+                        <td><span data-lang="es"><strong>Certificación de Idoneidad JTIA</strong></span><span data-lang="en"><strong>JTIA Suitability Certification</strong></span></td>
+                        <td>JTIA (Junta Técnica de Ingeniería y Arquitectura)</td>
+                        <td><span data-lang="es">Acredita la licencia de los Ingenieros/Arquitectos para firmar planos ante el Estado.</span><span data-lang="en">Accredits the license of Engineers/Architects to sign plans before the State.</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="sub-tag">Costa</span></td>
+                        <td><span data-lang="es"><strong>Resolución de Concesión Marítimo-Terrestre (ZMT 22m)</strong></span><span data-lang="en"><strong>Maritime-Terrestrial Concession Resolution (22m CZ)</strong></span></td>
+                        <td>ARCO / AMP (Autoridad Marítima)</td>
+                        <td><span data-lang="es">Aprobación de la franja costera (22m de dominio público) y zona de servidumbre para accesos.</span><span data-lang="en">Approval of the coastal strip (22m public domain) and easement zone for access.</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="sub-tag">Ambiental</span></td>
+                        <td><span data-lang="es"><strong>Aprobación de Esquelas del EIA (Cat. II/III)</strong></span><span data-lang="en"><strong>EIA Terms of Reference Approval (Cat. II/III)</strong></span></td>
+                        <td>MiAmbiente (Ministerio de Ambiente)</td>
+                        <td><span data-lang="es">Viabilidad ambiental integral para obras marinas, continentales y Villa Olímpica.</span><span data-lang="en">Comprehensive environmental viability for marine, continental works and Olympic Village.</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="sub-tag">Urbanismo</span></td>
+                        <td><span data-lang="es"><strong>Plan Maestro & Permiso de Construcción</strong></span><span data-lang="en"><strong>Master Plan & Building Permit</strong></span></td>
+                        <td>MIVIOT / Municipio Local</td>
+                        <td><span data-lang="es">Aprobación de zonificación del Pueblo continental e infraestructura pública.</span><span data-lang="en">Approval of continental village zoning and public infrastructure.</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="sub-tag">Garantía</span></td>
+                        <td><span data-lang="es"><strong>Póliza CAR & Aval de Cumplimiento</strong></span><span data-lang="en"><strong>CAR Policy & Compliance Endorsement</strong></span></td>
+                        <td>Aseguradora Regulada (SSRP)</td>
+                        <td><span data-lang="es">Fianza de cumplimiento y cobertura total por riesgos de construcción.</span><span data-lang="en">Compliance bond and total coverage for construction risks.</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="alert-box">
+                <strong><span data-lang="es">Condición de Desembolso:</span><span data-lang="en">Disbursement Condition:</span></strong> 
+                <span data-lang="es">Grupo Capitol no autorizará anticipo a Activa hasta comprobar las idoneidades de la JTIA y la aprobación de la concesión de la Zona Marítimo Terrestre (ARCO/AMP).</span>
+                <span data-lang="en">Grupo Capitol will not authorize advance payment to Activa without verifying JTIA suitability and the Coastal Zone concession approval (ARCO/AMP).</span>
+            </div>
+        </div>
+
+        <!-- TAB 3: PERMISOS SECTORIALES -->
+        <div id="tab-permisossector" class="tab-content">
+            <h3><span data-lang="es">3. Permisología Sectorial Específica</span><span data-lang="en">3. Specific Sectoral Permitting</span></h3>
+            <p>
+                <span data-lang="es">Certificaciones que Activa debe tramitar durante la ejecución para el cierre "Llaves en Mano":</span>
+                <span data-lang="en">Certificates that Activa must process during execution for "Turnkey" closure:</span>
+            </p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th><span data-lang="es">Proyecto / Zona</span><span data-lang="en">Project / Zone</span></th>
+                        <th><span data-lang="es">Certificado Exigido</span><span data-lang="en">Required Certificate</span></th>
+                        <th><span data-lang="es">Entidad Reguladora en Panamá</span><span data-lang="en">Regulatory Body in Panama</span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span data-lang="es"><strong>Hospital Continental (CLT)</strong></span><span data-lang="en"><strong>Continental Hospital (CLT)</strong></span></td>
+                        <td><span data-lang="es">Permiso de Ubicación, Planos Médicos & Licencia Sanitaria</span><span data-lang="en">Location Permit, Medical Plans & Health License</span></td>
+                        <td>MINSA (Consejo Técnico de Salud) / FIS</td>
+                    </tr>
+                    <tr>
+                        <td><span data-lang="es"><strong>Casinos (Isla & Continente)</strong></span><span data-lang="en"><strong>Casinos (Island & Continental)</strong></span></td>
+                        <td><span data-lang="es">Contrato de Concesión de Juegos de Azar</span><span data-lang="en">Gambling Concession Contract</span></td>
+                        <td>Junta de Control de Juegos (JCJ) / MEF</td>
+                    </tr>
+                    <tr>
+                        <td><span data-lang="es"><strong>Villas Overwater & Marina</strong></span><span data-lang="en"><strong>Overwater Villas & Marina</strong></span></td>
+                        <td><span data-lang="es">Concesión de Fondo de Mar, Espejo de Agua & Batimetría</span><span data-lang="en">Seabed Concession, Water Mirror & Bathymetry</span></td>
+                        <td>AMP (Autoridad Marítima de Panamá)</td>
+                    </tr>
+                    <tr>
+                        <td><span data-lang="es"><strong>Aeródromo Privado</strong></span><span data-lang="en"><strong>Private Airstrip</strong></span></td>
+                        <td><span data-lang="es">Certificación de Operatividad y Conos de Aproximación</span><span data-lang="en">Operativity Certification and Approach Cones</span></td>
+                        <td>AAC (Autoridad Aeronáutica Civil)</td>
+                    </tr>
+                    <tr>
+                        <td><span data-lang="es"><strong>Agua & Saneamiento</strong></span><span data-lang="en"><strong>Water & Sanitation</strong></span></td>
+                        <td><span data-lang="es">Calidad de Agua Desalinizada & Permiso PTAR</span><span data-lang="en">Desalinated Water Quality & WWTP Permit</span></td>
+                        <td>MINSA / IDAAN / MiAmbiente</td>
+                    </tr>
+                    <tr>
+                        <td><span data-lang="es"><strong>Turismo & Declaratoria</strong></span><span data-lang="en"><strong>Tourism & Declaration</strong></span></td>
+                        <td><span data-lang="es">Decreto de Interés Nacional & Incentivos Turísticos</span><span data-lang="en">National Interest Decree & Tax Incentives</span></td>
+                        <td>MITUR / ATP / Consejo de Gabinete</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- TAB 4: AVALES Y FIANZAS -->
+        <div id="tab-avales" class="tab-content">
+            <h3><span data-lang="es">4. Estructura de Avales & Garantías Financieras</span><span data-lang="en">4. Financial Endorsements & Guarantees Structure</span></h3>
+            <p>
+                <span data-lang="es">Cuadro de garantías de obligado cumplimiento exigibles a Activa Constructora:</span>
+                <span data-lang="en">Mandatory guarantees required from Activa Constructora:</span>
+            </p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th><span data-lang="es">Tipo de Garantía</span><span data-lang="en">Guarantee Type</span></th>
+                        <th>%</th>
+                        <th><span data-lang="es">Base de Cálculo</span><span data-lang="en">Calculation Base</span></th>
+                        <th><span data-lang="es">Propósito & Cobertura</span><span data-lang="en">Purpose & Coverage</span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span data-lang="es"><strong>Fianza de Cumplimiento</strong></span><span data-lang="en"><strong>Performance Bond</strong></span></td>
+                        <td><strong>20%</strong></td>
+                        <td><span data-lang="es">Presupuesto Obra Civil (Excluye CLT)</span><span data-lang="en">Civil Works Budget (Excludes CLT)</span></td>
+                        <td><span data-lang="es">Garantiza ejecución de cimentaciones, marina, pista, potabilizadora y permisos en plazo y precio cerrado.</span><span data-lang="en">Guarantees execution of foundations, marina, runway, desalination and permits on time and closed price.</span></td>
+                    </tr>
+                    <tr>
+                        <td><span data-lang="es"><strong>Fianza de Pago Anticipado</strong></span><span data-lang="en"><strong>Advance Payment Bond</strong></span></td>
+                        <td><strong>100%</strong></td>
+                        <td><span data-lang="es">Monto del Anticipo (10-20%)</span><span data-lang="en">Advance Amount (10-20%)</span></td>
+                        <td><span data-lang="es">Cubre devolución o amortización del dinero previa movilización.</span><span data-lang="en">Covers refund or amortization prior to mobilization.</span></td>
+                    </tr>
+                    <tr>
+                        <td><span data-lang="es"><strong>Seguro Todo Riesgo (CAR)</strong></span><span data-lang="en"><strong>All Risks Insurance (CAR)</strong></span></td>
+                        <td><strong>100%</strong></td>
+                        <td><span data-lang="es">Valor Total en Sitio</span><span data-lang="en">Total On-Site Value</span></td>
+                        <td><span data-lang="es">Cubre daños materiales, clima, logística marítima y civil ante terceros.</span><span data-lang="en">Covers material damage, weather, maritime logistics and civil liability.</span></td>
+                    </tr>
+                    <tr>
+                        <td><span data-lang="es"><strong>Fianza de Vicios Ocultos</strong></span><span data-lang="en"><strong>Hidden Defects Bond</strong></span></td>
+                        <td><strong>10%</strong></td>
+                        <td><span data-lang="es">Monto Final Obra</span><span data-lang="en">Final Works Amount</span></td>
+                        <td><span data-lang="es">Vigencia 1 a 3 años para reparar fallas estructurales de cimentaciones u obras marinas.</span><span data-lang="en">Valid 1 to 3 years to repair structural failures of foundations or marine works.</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <ul class="checklist" style="margin-top: 25px;">
+                <li>
+                    <input type="checkbox" id="a1" checked>
+                    <label for="a1"><strong><span data-lang="es">Emisor Autorizado:</span><span data-lang="en">Authorized Issuer:</span></strong> <span data-lang="es">Entidad regulada por la SSRP (Superintendencia de Seguros y Reaseguros de Panamá).</span><span data-lang="en">Entity regulated by SSRP (Superintendency of Insurance and Reinsurance of Panama).</span></label>
+                </li>
+                <li>
+                    <input type="checkbox" id="a2" checked>
+                    <label for="a2"><strong><span data-lang="es">Beneficiario Principal:</span><span data-lang="en">Main Beneficiary:</span></strong> <span data-lang="es">Inversor Institucional de EE.UU. / Propfastinvest Group Ltd.</span><span data-lang="en">U.S. Institutional Investor / Propfastinvest Group Ltd.</span></label>
+                </li>
+                <li>
+                    <input type="checkbox" id="a3" checked>
+                    <label for="a3"><strong><span data-lang="es">Aprobación Previa:</span><span data-lang="en">Prior Approval:</span></strong> <span data-lang="es">Ninguna fianza podrá liberarse sin certificación escrita firmada por <strong>Grupo Capitol</strong>.</span><span data-lang="en">No bond may be released without written certification signed by <strong>Grupo Capitol</strong>.</span></label>
+                </li>
+            </ul>
+
+            <div class="alert-box">
+                <strong><span data-lang="es">Criterio de Negociación:</span><span data-lang="en">Negotiation Criteria:</span></strong> 
+                <span data-lang="es">Dado que el montaje del CLT lo ejecuta el fabricante europeo, el importe de la fianza del 20% gravará exclusivamente el presupuesto de obra civil, infraestructuras y permisos de Activa.</span>
+                <span data-lang="en">Since CLT assembly is executed by the European manufacturer, the 20% bond amount will exclusively burden Activa's civil works, infrastructure, and permits budget.</span>
+            </div>
+        </div>
+
+        <!-- TAB 5: CUMPLIMIENTO LABORAL, RIESGOS Y DD TÉCNICA -->
+        <div id="tab-ddtecnica" class="tab-content">
+            <h3><span data-lang="es">5. Cumplimiento Laboral, Riesgos y Due Diligence Técnica</span><span data-lang="en">5. Labor Compliance, Risks & Technical Due Diligence</span></h3>
+            <p>
+                <span data-lang="es">Requisitos complementarios para evitar paralizaciones, garantizar la seguridad del talento humano y validar la viabilidad técnica del emplazamiento antes del desembolso:</span>
+                <span data-lang="en">Complementary requirements to prevent work stoppages, ensure human talent safety, and validate the technical feasibility of the site before disbursement:</span>
+            </p>
+
+            <h4><span data-lang="es">5.1 Permisología Laboral y Migratoria (Equipos CLT Europeos)</span><span data-lang="en">5.1 Labor & Migration Permitting (European CLT Crews)</span></h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th><span data-lang="es">Área</span><span data-lang="en">Area</span></th>
+                        <th><span data-lang="es">Certificado Exigido</span><span data-lang="en">Required Certificate</span></th>
+                        <th><span data-lang="es">Institución (Panamá)</span><span data-lang="en">Institution (Panama)</span></th>
+                        <th><span data-lang="es">Propósito Legal / Técnico</span><span data-lang="en">Legal / Technical Purpose</span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="sub-tag">Migración</span></td>
+                        <td><span data-lang="es"><strong>Visa Temporal & Permiso de Trabajo Técnico Especializado</strong></span><span data-lang="en"><strong>Temporary Visa & Specialized Technical Work Permit</strong></span></td>
+                        <td>MICI / Servicio Nacional de Migración</td>
+                        <td><span data-lang="es">Permite el ingreso legal de los ensambladores europeos de CLT, cumpliendo la cuota del 90% de personal local panameño.</span><span data-lang="en">Allows legal entry of European CLT assemblers, complying with the 90% Panamanian local personnel quota.</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="sub-tag">Laboral</span></td>
+                        <td><span data-lang="es"><strong>Inscripción Patronal & Cumplimiento de Seguridad Social</strong></span><span data-lang="en"><strong>Employer Registration & Social Security Compliance</strong></span></td>
+                        <td>MITRADEL / CSS (Caja de Seguro Social)</td>
+                        <td><span data-lang="es">Garantiza que Activa responda laboralmente ante los operarios en obra, evitando multas o cierres administrativos.</span><span data-lang="en">Ensures Activa responds labor-wise to operators on site, avoiding fines or administrative closures.</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4><span data-lang="es">5.2 Pólizas de Cobertura Humana y a Terceros</span><span data-lang="en">5.2 Human and Third-Party Coverage Policies</span></h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th><span data-lang="es">Tipo de Póliza</span><span data-lang="en">Policy Type</span></th>
+                        <th><span data-lang="es">Cobertura</span><span data-lang="en">Coverage</span></th>
+                        <th><span data-lang="es">Propósito & Riesgo Mitigado</span><span data-lang="en">Purpose & Mitigated Risk</span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span data-lang="es"><strong>Seguro de Riesgos Profesionales</strong></span><span data-lang="en"><strong>Professional Risks Insurance</strong></span></td>
+                        <td><span data-lang="es">100% Trabajadores en sitio</span><span data-lang="en">100% Workers on site</span></td>
+                        <td><span data-lang="es">Obligatoria en Panamá. Cubre accidentes o enfermedades laborales de la cuadrilla marítima y terrestre.</span><span data-lang="en">Mandatory in Panama. Covers accidents or occupational diseases of the marine and land crew.</span></td>
+                    </tr>
+                    <tr>
+                        <td><span data-lang="es"><strong>Responsabilidad Civil Extracontractual</strong></span><span data-lang="en"><strong>Tort Liability (Civil Liability)</strong></span></td>
+                        <td><span data-lang="es">Daños a Terceros / Ecosistema</span><span data-lang="en">Third-Party / Ecosystem Damages</span></td>
+                        <td><span data-lang="es">Vital para la logística marítima. Cubre daños a embarcaciones pasantes, turistas o afectación al medio marino por la obra.</span><span data-lang="en">Vital for maritime logistics. Covers damages to passing vessels, tourists, or marine environment disruption by the works.</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4><span data-lang="es">5.3 Due Diligence Técnica Previa (Viabilidad)</span><span data-lang="en">5.3 Technical Due Diligence (Viability)</span></h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th><span data-lang="es">Área</span><span data-lang="en">Area</span></th>
+                        <th><span data-lang="es">Requisito Exigido</span><span data-lang="en">Required Requisite</span></th>
+                        <th><span data-lang="es">Propósito & Validación</span><span data-lang="en">Purpose & Validation</span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="sub-tag">Eléctrica</span></td>
+                        <td><span data-lang="es"><strong>Factibilidad de Suministro / Permiso de Microgrid</strong></span><span data-lang="en"><strong>Supply Feasibility / Microgrid Permit</strong></span></td>
+                        <td><span data-lang="es">Contrato de energía con ETESA o autorización de generación propia ante la ASEP para el Hospital y Casinos.</span><span data-lang="en">Power contract with ETESA or own generation approval before ASEP for the Hospital and Casinos.</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="sub-tag">Geotecnia</span></td>
+                        <td><span data-lang="es"><strong>Estudios de Suelos y Batimetría Aprobados</strong></span><span data-lang="en"><strong>Approved Soil & Bathymetry Studies</strong></span></td>
+                        <td><span data-lang="es">Informes firmados por laboratorios acreditados. Obligatorios para que la JTIA apruebe el pilotaje marino y las cimentaciones del CLT.</span><span data-lang="en">Reports signed by accredited labs. Mandatory for JTIA to approve marine piloting and CLT foundations.</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="sub-tag">Diseño</span></td>
+                        <td><span data-lang="es"><strong>Implementación de BIM & Clash Detection</strong></span><span data-lang="en"><strong>BIM Implementation & Clash Detection</strong></span></td>
+                        <td><span data-lang="es">Modelo 3D colaborativo exigido a Activa y al fabricante europeo para evitar choques entre la obra civil y el diseño del CLT.</span><span data-lang="en">Collaborative 3D model required from Activa and European manufacturer to prevent clashes between civil works and CLT design.</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="alert-box">
+                <strong><span data-lang="es">Condición de Sinergia:</span><span data-lang="en">Synergy Condition:</span></strong> 
+                <span data-lang="es">La llegada de los equipos europeos de CLT a Panamá no se autorizará hasta que Activa presente los permisos migratorios (MICI) aprobados y las pólizas de riesgos profesionales y civil vigentes.</span>
+                <span data-lang="en">The arrival of European CLT crews to Panama will not be authorized until Activa presents approved migration permits (MICI) and active professional risk and civil liability policies.</span>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Propfastinvest Group Ltd. <span data-lang="es">Documento confidencial elaborado para evaluación de Gerencia, Grupo Capitol y Activa Constructora.</span><span data-lang="en">Confidential document prepared for Management evaluation, Grupo Capitol and Activa Constructora.</span></p>
+        <p><a href="https://programaejecucion.netlify.app" target="_blank">programaejecucion.netlify.app</a></p>
+    </footer>
+
+    <script>
+        function switchTab(tabId) {
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            document.getElementById(tabId).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+
+        function toggleLanguage() {
+            const body = document.body;
+            if (body.classList.contains('lang-es')) {
+                body.classList.remove('lang-es');
+                body.classList.add('lang-en');
+                document.documentElement.lang = 'en';
+            } else {
+                body.classList.remove('lang-en');
+                body.classList.add('lang-es');
+                document.documentElement.lang = 'es';
+            }
+        }
+    </script>
+</body>
+</html>
